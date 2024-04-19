@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .input-gruop {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        #tablaGustos {
+            max-height: 300px;  
+            overflow-y: auto;   
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #b5cab6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #b5cab6;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+
+        .form-txt {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <form>
+        <h2>Formulario de afiliación</h2>
+        <div class="input-gruop">
+
+            <label for = "name"></label>
+            <input type="text" name="name" id="name" placeholder="Nombre completo">
+
+            <label for="email"></label>
+            <input type="email" name="email"id="email" placeholder="Email">
+            
+            <label for="phone"></label>
+            <input type="tel" name="phone" id="phone" placeholder="Telefono">
+            
+            <table id="tablaGustos" border="1">
+                <thead>
+                    <tr>
+                        <th>Gusto o Actividad</th>
+                        <th>Porcentaje (%)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    <tr>
+                        <td contenteditable="true">Gusto</td>
+                        <td contenteditable="true">50%</td>
+                        <td><button onclick="eliminarFila(this)">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <button onclick="agregarFila()" type="button" >Agregar Gusto</button>
+            <input Class="btn" type="submit" value="Enviar">
+
+            <div class="form-txt">
+                <a href="#">Ir al site de P web</a>
+            </div>
+            
+
+        </div>
+
+
+    </form>       
+    <script>
+        function agregarFila() {
+            var tabla = document.getElementById("tablaGustos").getElementsByTagName('tbody')[0];
+            var nuevaFila = tabla.insertRow();
+        
+    
+            var celdaGusto = nuevaFila.insertCell(0);
+            var celdaPorcentaje = nuevaFila.insertCell(1);
+            var celdaAcciones = nuevaFila.insertCell(2);
+    
+            celdaGusto.contentEditable = true;
+            celdaPorcentaje.contentEditable = true;
+    
+            celdaAcciones.innerHTML = '<button onclick="eliminarFila(this)">Eliminar</button>';
+        }
+    
+        function eliminarFila(boton) {
+            var fila = boton.parentNode.parentNode;
+            fila.parentNode.removeChild(fila);
+        }
+    </script>    
+
+</body>
+</html>
